@@ -1,14 +1,17 @@
 {
-  "name": "electron-app",
+  "name": "{{APP_NAME}}",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "{{APP_DESCRIPTION}}",
+  "author": "{{AUTHOR_NAME}}",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && electron-builder",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "rebuild": "electron-rebuild -f -w better-sqlite3"
+    "rebuild": "electron-rebuild -f -w better-sqlite3",
+    "setup": "node scripts/setup.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",

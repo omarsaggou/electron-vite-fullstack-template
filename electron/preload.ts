@@ -1,5 +1,23 @@
 import { ipcRenderer, contextBridge } from 'electron'
 
+// Database API for renderer process
+const databaseAPI = {
+  test: () => ipcRenderer.invoke('db:test'),
+  addItem: (message: string) => ipcRenderer.invoke('db:add-item', message),
+  getItems: () => ipcRenderer.invoke('db:get-items'),
+  deleteItem: (id: number) => ipcRenderer.invoke('db:delete-item', id)
+}
+
+contextBridge.exposeInMainWorld('databaseAPI', databaseAPI)
+
+// Type definitions for TypeScript
+export interface DatabaseAPI {
+  test: () => Promise<{ success: boolean, message: string, items: any[] }>
+  addItem: (message: string) => Promise<{ success: boolean, item?: any, error?: string }>
+  getItems: () => Promise<{ success: boolean, items: any[], error?: string }>
+  deleteItem: (id: number) => Promise<{ success: boolean, error?: string }>
+}
+
 // --------- Expose some API to the Renderer process ---------
 contextBridge.exposeInMainWorld('ipcRenderer', {
   on(...args: Parameters<typeof ipcRenderer.on>) {

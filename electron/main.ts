@@ -2,6 +2,7 @@ import { app, BrowserWindow } from 'electron'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+import { cleanupDatabase, setupDatabaseIPC } from './ipc-handlers'
 
 const require = createRequire(import.meta.url)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -51,6 +52,8 @@ function createWindow() {
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
+  cleanupDatabase()
+
   if (process.platform !== 'darwin') {
     app.quit()
     win = null
@@ -65,4 +68,13 @@ app.on('activate', () => {
   }
 })
 
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+
+  setupDatabaseIPC();
+
+  createWindow();
+})
+
+app.on('before-quit', () => {
+  cleanupDatabase() // ADD THIS LINE
+})

@@ -1,0 +1,12 @@
+name: Electron React TypeScript SQLite Template
+description: A modern Electron application template with React, TypeScript, Vite, SQLite, and Redux Toolkit
+tags:
+  - electron
+  - react
+  - typescript
+  - sqlite
+  - redux
+  - vite
+  - tailwindcss
+  - desktop-app
+  - template
