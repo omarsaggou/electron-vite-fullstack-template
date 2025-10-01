@@ -5,6 +5,7 @@
 
 @theme {
   --color-primary: #f97316;   /* orange background */
+  --color-primary-hover: #ea580c; /* hover */
   --color-secondary: #1e3a8a; /* deep blue */
   --color-accent: #3b82f6;    /* light blue */
   --color-warning: #facc15;

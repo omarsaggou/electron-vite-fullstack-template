@@ -1,6 +1,7 @@
 // src/pages/Login
 import { useNavigate } from 'react-router-dom'
 import bgLogin from '../../assets/bg-login.jpg'
+import { Button } from '../../components'
 export default function Login() {
     const navigate = useNavigate()
 
@@ -36,12 +37,12 @@ export default function Login() {
                             placeholder="Password"
                             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                         />
-                        <button
+                        <Button
                             onClick={handleLogin}
-                            className="w-full py-3 mt-2 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-indigo-600 transition duration-300"
+                            className="w-full py-3 mt-2 bg-primary text-white font-semibold rounded-lg shadow-md hover:cursor-pointer hover:bg-primary-hover transition duration-300"
                         >
                             Login
-                        </button>
+                        </Button>
                     </div>
 
                     {/* Footer */}
