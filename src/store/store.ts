@@ -1,26 +1,17 @@
-// First, install Redux dependencies:
-// npm install @reduxjs/toolkit react-redux
+import { create } from 'zustand'
 
-// src/store/store.ts
-import { configureStore, createSlice } from '@reduxjs/toolkit'
+// Define the store type
+interface CounterState {
+  value: number
+  increment: () => void
+  decrement: () => void
+  reset: () => void
+}
 
-const counterSlice = createSlice({
-  name: 'counter',
-  initialState: { value: 0 },
-  reducers: {
-    increment: (state) => { state.value += 1 },
-    decrement: (state) => { state.value -= 1 },
-    reset: (state) => { state.value = 0 }
-  }
-})
-
-export const { increment, decrement, reset } = counterSlice.actions
-
-export const store = configureStore({
-  reducer: {
-    counter: counterSlice.reducer
-  }
-})
-
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+// Create the store
+export const useCounterStore = create<CounterState>((set) => ({
+  value: 0,
+  increment: () => set((state) => ({ value: state.value + 1 })),
+  decrement: () => set((state) => ({ value: state.value - 1 })),
+  reset: () => set({ value: 0 }),
+}))

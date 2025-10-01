@@ -1,9 +1,9 @@
 // @see - https://www.electron.build/configuration/configuration
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  "appId": "{{APP_ID}}",
+  "appId": "com.omarsaggou.diabetesmanagement",
   "asar": true,
-  "productName": "{{APP_NAME}}",
+  "productName": "diabetes management",
   "directories": {
     "output": "release/${version}"
   },

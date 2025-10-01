@@ -1,29 +1,27 @@
 // src/App.tsx - Complete stack test with SQLite
 import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from './store/store'
-import { increment, decrement, reset } from './store/store'
 import { Button, Card, StatusBadge, LoadingSpinner } from './components'
-import { 
-  CheckIcon, 
-  DatabaseIcon, 
-  RefreshIcon, 
-  PlusIcon, 
-  TrashIcon, 
-  BeakerIcon, 
+import {
+  CheckIcon,
+  DatabaseIcon,
+  RefreshIcon,
+  PlusIcon,
+  TrashIcon,
+  BeakerIcon,
   MinusIcon,
   ArrowPathIcon,
   RocketIcon,
   SparklesIcon
 } from './components/Icons'
+import { useCounterStore } from './store/store'
 
 // Type definitions for window APIs
 declare global {
   interface Window {
     databaseAPI: {
-      test: () => Promise<{ success: boolean, message: string, items: any[] }>
-      addItem: (message: string) => Promise<{ success: boolean, item?: any, error?: string }>
-      getItems: () => Promise<{ success: boolean, items: any[], error?: string }>
+      test: () => Promise<{ success: boolean, message: string, items: unknown[] }>
+      addItem: (message: string) => Promise<{ success: boolean, item?: unknown, error?: string }>
+      getItems: () => Promise<{ success: boolean, items: unknown[], error?: string }>
       deleteItem: (id: number) => Promise<{ success: boolean, error?: string }>
     }
   }
@@ -37,8 +35,8 @@ interface TestItem {
 
 function App() {
   // Redux state
-  const count = useSelector((state: RootState) => state.counter.value)
-  const dispatch = useDispatch()
+  const { value: count, increment, decrement, reset } = useCounterStore()
+
 
   // SQLite state
   const [dbItems, setDbItems] = useState<TestItem[]>([])
@@ -51,7 +49,7 @@ function App() {
     try {
       const result = await window.databaseAPI.getItems()
       if (result.success) {
-        setDbItems(result.items)
+        setDbItems(result.items as TestItem[])
       }
     } catch (error) {
       setDbStatus(`Error loading items: ${error}`)
@@ -65,7 +63,7 @@ function App() {
       const result = await window.databaseAPI.test()
       setDbStatus(result.success ? `✅ ${result.message}` : `❌ ${result.message}`)
       if (result.success) {
-        setDbItems(result.items)
+        setDbItems(result.items as TestItem[])
       }
     } catch (error) {
       setDbStatus(`❌ Database test failed: ${error}`)
@@ -77,7 +75,7 @@ function App() {
   // Add database item
   const addDbItem = async () => {
     if (!dbMessage.trim()) return
-    
+
     setLoading(true)
     try {
       const result = await window.databaseAPI.addItem(dbMessage)
@@ -128,7 +126,7 @@ function App() {
               <RocketIcon className="text-white" size={32} />
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient-shift bg-size-200">
-              {{APP_NAME}}
+              {/* {{ APP_NAME }} */}Test
             </h1>
           </div>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
@@ -160,7 +158,7 @@ function App() {
 
         <div className="grid lg:grid-cols-2 gap-8 animate-in slide-in-from-left-8 duration-700 delay-300">
           {/* Redux State Management Card */}
-          <Card 
+          <Card
             title="State Management"
             subtitle="Redux Toolkit with React hooks integration"
             variant="glass"
@@ -174,13 +172,13 @@ function App() {
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 blur-3xl -z-10 rounded-full animate-pulse"></div>
               </div>
-              
+
               {/* Counter Controls */}
               <div className="flex gap-3 justify-center">
                 <Button
                   variant="danger"
                   size="lg"
-                  onClick={() => dispatch(decrement())}
+                  onClick={() => decrement()}
                   leftIcon={<MinusIcon />}
                   className="min-w-[120px]"
                 >
@@ -189,7 +187,7 @@ function App() {
                 <Button
                   variant="secondary"
                   size="lg"
-                  onClick={() => dispatch(reset())}
+                  onClick={() => reset()}
                   leftIcon={<ArrowPathIcon />}
                   className="min-w-[100px]"
                 >
@@ -198,7 +196,7 @@ function App() {
                 <Button
                   variant="success"
                   size="lg"
-                  onClick={() => dispatch(increment())}
+                  onClick={() => increment()}
                   leftIcon={<PlusIcon />}
                   className="min-w-[120px]"
                 >
@@ -217,7 +215,7 @@ function App() {
           </Card>
 
           {/* SQLite Database Card */}
-          <Card 
+          <Card
             title="SQLite Database"
             subtitle="Local database with IPC communication"
             variant="glass"

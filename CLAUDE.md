@@ -10,10 +10,10 @@ This is an Electron application template built with React, TypeScript, and Vite.
 
 When working with this template, be aware of these placeholder variables that need customization:
 
-- `{{APP_NAME}}` - Application name (used in package.json, database filename, UI)
-- `{{APP_DESCRIPTION}}` - Application description for package.json
-- `{{AUTHOR_NAME}}` - Author information for package.json
-- `{{APP_ID}}` - Bundle identifier for electron-builder (e.g., com.company.appname)
+- `diabetes management` - Application name (used in package.json, database filename, UI)
+- `` - Application description for package.json
+- `omar.saggou` - Author information for package.json
+- `com.omarsaggou.diabetesmanagement` - Bundle identifier for electron-builder (e.g., com.company.appname)
 
 ### Architecture
 
@@ -57,16 +57,16 @@ After cloning this template:
 
 ### Manual Customization
 If not using the setup script, manually replace these template variables:
-- Search and replace `{{APP_NAME}}` with your app name
-- Search and replace `{{APP_DESCRIPTION}}` with your app description
-- Search and replace `{{AUTHOR_NAME}}` with your name
-- Search and replace `{{APP_ID}}` with your bundle identifier
+- Search and replace `diabetes management` with your app name
+- Search and replace `` with your app description
+- Search and replace `omar.saggou` with your name
+- Search and replace `com.omarsaggou.diabetesmanagement` with your bundle identifier
 
 ## Database Architecture
 
 The template uses a SQLite database with the following setup:
 
-- **Location**: User data directory (`{{APP_NAME}}.db`)
+- **Location**: User data directory (`diabetes management.db`)
 - **Connection**: WAL mode enabled for performance
 - **IPC Channels**: 
   - `db:test` - Test database connection

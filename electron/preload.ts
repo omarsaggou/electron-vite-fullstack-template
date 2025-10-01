@@ -12,9 +12,9 @@ contextBridge.exposeInMainWorld('databaseAPI', databaseAPI)
 
 // Type definitions for TypeScript
 export interface DatabaseAPI {
-  test: () => Promise<{ success: boolean, message: string, items: any[] }>
-  addItem: (message: string) => Promise<{ success: boolean, item?: any, error?: string }>
-  getItems: () => Promise<{ success: boolean, items: any[], error?: string }>
+  test: () => Promise<{ success: boolean, message: string, items: unknown[] }>
+  addItem: (message: string) => Promise<{ success: boolean, item?: unknown, error?: string }>
+  getItems: () => Promise<{ success: boolean, items: unknown[], error?: string }>
   deleteItem: (id: number) => Promise<{ success: boolean, error?: string }>
 }
 

@@ -86,7 +86,7 @@ npm run setup        # Customize template (run once)
 
 The template includes a fully configured SQLite database:
 
-- **Location**: User data directory (`{{APP_NAME}}.db`)
+- **Location**: User data directory (`diabetes management.db`)
 - **Features**: WAL mode, TypeScript interfaces, IPC communication
 - **Operations**: Create, read, update, delete with type safety
 

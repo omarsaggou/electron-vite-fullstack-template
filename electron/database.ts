@@ -15,7 +15,7 @@ class DatabaseManager {
   constructor() {
     // Use app.getPath to get user data directory - works in ES modules
     const userDataPath = app.getPath('userData')
-    const dbPath = path.join(userDataPath, '{{APP_NAME}}.db')
+    const dbPath = path.join(userDataPath, 'diabetes management.db')
     console.log('📁 Database path:', dbPath)
     
     try {

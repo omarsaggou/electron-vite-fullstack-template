@@ -1,6 +1,6 @@
 // electron/ipc-handlers.ts - IPC for database operations (ES Module Compatible)
 import { ipcMain } from 'electron'
-import DatabaseManager, { TestItem } from './database'
+import DatabaseManager from './database'
 
 let dbManager: DatabaseManager | null = null
 
