@@ -1,3 +1,6 @@
+// tailwind.config.ts
+import scrollbar from "tailwind-scrollbar"
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -35,6 +38,6 @@ export default {
     },
   },
   plugins: [
-    require('tailwind-scrollbar')({ nocompatible: true }),
+    scrollbar({ nocompatible: true }),
   ],
 }

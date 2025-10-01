@@ -3,6 +3,18 @@
 
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #f97316;   /* orange background */
+  --color-secondary: #1e3a8a; /* deep blue */
+  --color-accent: #3b82f6;    /* light blue */
+  --color-warning: #facc15;
+  --color-danger: #991b1b;
+  --color-neutral: #9ca3af;
+  --color-background: #ffffff;
+
+  --font-sans: Inter, system-ui, sans-serif;
+}
+
 /* Global font configuration */
 body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
